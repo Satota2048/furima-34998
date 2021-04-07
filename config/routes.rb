@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  #アクセス時にホーム画面を表示
+  root to: "items#index"
 end
