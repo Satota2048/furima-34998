@@ -1,24 +1,56 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## user
 
-Things you may want to cover:
+| Column    | Type   | Options                   |
+| --------- | ------ | ------------------------- |
+| nickname  | string | null: false               |
+| email     | string | null: false, unique: true |
+| password  | string | null: false               |
+| name      | string | null: false               |
+| kana-name | string | null: false               |
+| birth     | date   | null: false               |
 
-* Ruby version
+### Association
+- has_many :items
 
-* System dependencies
+## items
 
-* Configuration
+| Column       | Type          | Options     |
+| ------------ | ------------- | ----------- |
+| image        | ActiveStorage | null: false |
+| title        | string        | null: false |
+| explain      | text          | null: false |
+| category     | ActiveHash    | null: false |
+| status       | ActiveHash    | null: false |
+| how-much     | integer       | null: false |
 
-* Database creation
+## Association
+- belongs_to :user
+- has_one :buy-information
 
-* Database initialization
+## buy-information
 
-* How to run the test suite
+| Column       | Type          | Options     |
+| ------------ | ------------- | ----------- |
+| delivery-fee | ActiveHash    | null: false |
+| send-from    | ActiveHash    | null: false |
+| cost-days    | ActiveHash    | null: false |
 
-* Services (job queues, cache servers, search engines, etc.)
+## Association
+- belongs_to :item
+- has_one :send-address
 
-* Deployment instructions
+## send-address
 
-* ...
+| Column        | Type          | Options     |
+| ------------- | ------------- | ----------- |
+| postal-number | string        | null: false | 
+| prefectures   | ActiveHash    | null: false |
+| municipality  | string        | null: false |
+| address       | string        | null: false |
+| building-name | string        | null: false |
+| phone-number  | integer       | null: false|
+
+## Association
+- belongs_to :buy-information
