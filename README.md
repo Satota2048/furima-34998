@@ -1,6 +1,6 @@
 # README
 
-## user
+## users
 
 | Column             | Type   | Options                   |
 | ------------------ | ------ | ------------------------- |
@@ -35,7 +35,7 @@
 - belongs_to :user
 - has_one :user_judge
 
-## user_judge
+## user_judges
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
@@ -47,7 +47,7 @@
 - belongs_to :item
 - has_one :send_address
 
-## send_address
+## send_addresses
 
 | Column        | Type          | Options                        |
 | ------------- | ------------- | ------------------------------ |
