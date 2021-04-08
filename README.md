@@ -10,7 +10,7 @@
 | family_name        | string | null: false               |
 | last_name          | string | null: false               |
 | family_kana_name   | string | null: false               |
-| last_kana_name     | string | null:false                |
+| last_kana_name     | string | null: false               |
 | birth              | date   | null: false               |
 
 ### Association
