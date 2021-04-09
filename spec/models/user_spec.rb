@@ -77,12 +77,12 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name can't be blank")
     end
-    it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
+    it "ユーザー本名(名字)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
       @user.family_name = 'jin'
       @user.valid?
       expect(@user.errors.full_messages).to include("Family name 全角文字を使用してください")
     end
-    it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
+    it "ユーザー本名(名前)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
       @user.last_name = 'scotti'
       @user.valid?
       expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
