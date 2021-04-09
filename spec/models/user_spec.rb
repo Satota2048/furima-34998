@@ -3,7 +3,12 @@ RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
   end
-  describe "新規登録/ユーザー情報" do
+  context " 新規登録できるとき" do
+    it "正常な値の入力確認" do
+      expect(@user).to be_valid
+    end
+  end
+  context "新規登録/ユーザー情報が原因でできないとき" do
     it "ニックネームが必須であること" do
       @user.nickname = ''
       @user.valid?
@@ -60,6 +65,8 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
+  end
+  context "新規登録/本人情報確認が原因でできないとき" do
     it "ユーザー本名は、名字が必須であること" do
       @user.family_name = ''
       @user.valid?
@@ -72,9 +79,13 @@ RSpec.describe User, type: :model do
     end
     it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
       @user.family_name = 'jin'
-      @user.last_kana_name = 'scotti'
       @user.valid?
       expect(@user.errors.full_messages).to include("Family name 全角文字を使用してください")
+    end
+    it "ユーザー本名は、全角（漢字・ひらがな・カタカナ）での入力が必須であること" do
+      @user.last_name = 'scotti'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name 全角文字を使用してください")
     end
     it "ユーザー本名のフリガナは、名字が必須であること" do
       @user.family_kana_name = ''
@@ -86,11 +97,15 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Last kana name can't be blank")
     end
-    it "ユーザー本名のフリガナは、全角（カタカナ）での入力が必須であること" do
+    it "ユーザー本名(名字)のフリガナは、全角（カタカナ）での入力が必須であること" do
       @user.family_kana_name = 'あ'
-      @user.last_kana_name = 'い'
       @user.valid?
       expect(@user.errors.full_messages).to include("Family kana name 全角カタカナを使用してください")
+    end
+    it "ユーザー本名(名前)のフリガナは、全角（カタカナ）での入力が必須であること" do
+      @user.last_kana_name = 'い'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last kana name 全角カタカナを使用してください")
     end
     it "生年月日が必須であること" do
       @user.birth = ''
