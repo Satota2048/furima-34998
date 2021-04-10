@@ -5,16 +5,27 @@ class Item < ApplicationRecord
 
   has_one_attached :image
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :status
+  belongs_to :delivery_fee
+  belongs_to :send_from
+  belongs_to :cost_day
+
   with_options presence: true do
+    validates :image
     validates :title
     validates :explain
+    validates :how_much
+    validates :user
+  end
+
+  with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :status_id
-    validates :how_much
     validates :delivery_fee_id
     validates :send_from_id
     validates :cost_day_id
-    validates :user
   end
 
 end

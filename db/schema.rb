@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 2021_04_09_114601) do
     t.text "explain", null: false
     t.integer "category_id", null: false
     t.integer "status_id", null: false
-    t.integer "how_much", null: false
     t.integer "delivery_fee_id", null: false
     t.integer "send_from_id", null: false
     t.integer "cost_day_id", null: false
+    t.integer "how_much", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
