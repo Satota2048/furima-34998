@@ -17,6 +17,7 @@ class Item < ApplicationRecord
     validates :title
     validates :explain
     validates :how_much
+    validates_inclusion_of :how_much, in: 300..9_999_999
     validates :user
   end
 
