@@ -26,14 +26,8 @@ class ItemsController < ApplicationController
 
   private
 
-  # 保存用記載
   def item_params
     params.require(:item).permit(:image, :title, :explain, :category_id, :status_id, :cost_day_id, :delivery_fee_id, :send_from_id, :cost_day_id, :how_much, :user).merge(user_id: current_user.id)
   end
 
-  def move_to_new
-    unless authenticate_user!
-      redirect_to  new_user_session_path
-    end
-  end
 end

@@ -68,7 +68,13 @@ RSpec.describe Item, type: :model do
     it "販売価格は半角数字のみ保存可能であること" do
       @item.how_much = "１０００"
       @item.valid?
-      expect(@item.errors.full_messages).to include("How much is not included in the list")
+      expect(@item.errors.full_messages).to include("How much 半角数字のみ有効です")
+    end
+    it "販売価格が少数を含まないこと" do
+      @item.how_much = 500.1
+      @item.valid?
+      binding.pry
+      expect(@item.errors.full_messages).to include("How much 半角数字のみ有効です")
     end
   end
 end

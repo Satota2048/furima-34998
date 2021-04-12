@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :image
     validates :title
     validates :explain
-    validates :how_much
+    validates :how_much, numericality: {only_integer: true ,message: "半角数字のみ有効です"}
     validates_inclusion_of :how_much, in: 300..9_999_999
     validates :user
   end
