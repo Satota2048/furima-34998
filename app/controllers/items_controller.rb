@@ -23,9 +23,19 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  # def edit
-  #  @item
-  # end
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.update
+      redirect_to item_path(@item.id)
+    else
+      render 'shared/error_messages', model: f.object
+    end
+  end
 
   private
 
