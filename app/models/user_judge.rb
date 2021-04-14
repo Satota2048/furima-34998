@@ -1,0 +1,2 @@
+class UserJudge < ApplicationRecord
+end
