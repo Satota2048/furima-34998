@@ -1,7 +1,8 @@
 class UserJudgesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_params, only: [:index]
+  before_action :set_params, only: [:index,:create]
   before_action :origin_params, only: [:index,:new]
+  before_action :customer_check
 
   def index
   end
@@ -15,13 +16,13 @@ class UserJudgesController < ApplicationController
       @order.save
       redirect_to root_path
     else
-      render :new
+      render :index
     end
   end
 
   private
   def order_params
-    params.require(:order).permit(:postal_code,:prefecture_id,:municipality,:address,:building_name,:phone_number,:user_judge,:user,:item).merge(user_id: current_user.id)
+    params.require(:order).permit(:postal_number,:prefecture_id,:municipality,:address,:building_name,:phone_number,:user_judge,:user,:item).merge(user_id: current_user.id)
   end
 
   def set_params
@@ -30,5 +31,11 @@ class UserJudgesController < ApplicationController
 
   def origin_params
     @order = Order.new
+  end
+
+  def customer_check
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
   end
 end
