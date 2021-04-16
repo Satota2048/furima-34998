@@ -51,4 +51,16 @@ RSpec.describe Order, type: :model do
       expect(@user_judge.errors.full_messages).to include("Phone number 半角数字のみ有効です")
     end
   end
+  context 'カード情報に問題がないとき' do
+    it "tokenがあれば購入ができること" do
+      expect(@user_judge).to be_valid
+    end
+  end
+  context 'カード情報に問題がないとき' do
+    it 'tokenに問題があれば購入ができないこと' do
+      @user_judge.token = nil
+      @user_judge.valid?
+      expect(@user_judge.errors.full_messages).to include("Token can't be blank")
+    end
+  end
 end
