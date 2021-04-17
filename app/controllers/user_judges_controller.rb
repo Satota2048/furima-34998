@@ -1,15 +1,12 @@
 class UserJudgesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_params, only: [:index,:create]
-  before_action :origin_params, only: [:index,:new]
+  before_action :origin_params, only: [:index]
   before_action :customer_check
 
   def index
   end
 
-  def new
-  end
-  
   def create
     @order = Order.new(order_params)
     if @order.valid?
@@ -41,11 +38,11 @@ class UserJudgesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] 
       Payjp::Charge.create(
-        amount: set_params.how_much,  # 商品の値段
-        card: order_params[:token],    # カードトークン
-        currency: 'jpy'                 # 通貨の種類（日本円）
+        amount: set_params.how_much,
+        card: order_params[:token],
+        currency: 'jpy'
       )
   end
 end
