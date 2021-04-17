@@ -15,6 +15,10 @@ RSpec.describe Order, type: :model do
       @user_judge.building_name = '創荘'
       expect(@user_judge).to be_valid
     end
+    it "建物の名前が入力されていないとき" do
+      @user_judge.building_name = ''
+      expect(@user_judge).to be_valid
+    end
   end
   context 'カード情報に問題がないとき' do
     it "tokenがあれば購入ができること" do
@@ -59,6 +63,11 @@ RSpec.describe Order, type: :model do
     end
     it "電話番号が半角数字であること" do
       @user_judge.phone_number = '１２３４５６７８９１２'
+      @user_judge.valid?
+      expect(@user_judge.errors.full_messages).to include("Phone number 半角数字のみ有効です")
+    end
+    it "電話番号が英数混合な場合" do
+      @user_judge.phone_number = 'abcde123456'
       @user_judge.valid?
       expect(@user_judge.errors.full_messages).to include("Phone number 半角数字のみ有効です")
     end
