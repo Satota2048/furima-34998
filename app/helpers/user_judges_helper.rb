@@ -1,0 +1,2 @@
+module UserJudgesHelper
+end
