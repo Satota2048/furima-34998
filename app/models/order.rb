@@ -12,7 +12,7 @@ class Order
   validates :phone_number, format: {with: /\A\d{10,11}\z/, message: "10〜11桁の半角数字のみ有効です" }
 
   def save
-    UserJudge.create(user_id: user_id,item_id: item_id)
-    SendAddress.create(postal_number: postal_number,prefecture_id: prefecture_id,municipality: municipality,address: address,building_name: building_name,phone_number: phone_number,user_judge_id: user_judge_id)
+    user_judge =  UserJudge.create(user_id: user_id,item_id: item_id)
+    SendAddress.create(postal_number: postal_number,prefecture_id: prefecture_id,municipality: municipality,address: address,building_name: building_name,phone_number: phone_number,user_judge_id: user_judge.id)
   end
 end
