@@ -56,7 +56,7 @@ RSpec.describe Order, type: :model do
       expect(@user_judge).to be_valid
     end
   end
-  context 'カード情報に問題がないとき' do
+  context 'カード情報に問題があるとき' do
     it 'tokenに問題があれば購入ができないこと' do
       @user_judge.token = nil
       @user_judge.valid?
