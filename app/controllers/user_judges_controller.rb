@@ -35,7 +35,7 @@ class UserJudgesController < ApplicationController
   end
 
   def customer_check
-    if current_user.id == @item.user_id
+    if current_user.id == @item.user_id || @item.user_judge.present?
       redirect_to root_path
     end
   end
