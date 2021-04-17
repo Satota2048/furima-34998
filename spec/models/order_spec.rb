@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Order, type: :model do
   before do
-    @user_judge = FactoryBot.build(:order)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @user_judge = FactoryBot.build(:order, user_id: user.id, item_id: item.id)
+    sleep(0.3)
   end
   context " 新規購入できるとき" do
     it "正常な値の入力確認" do
