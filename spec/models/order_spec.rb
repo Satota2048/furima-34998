@@ -37,8 +37,9 @@ RSpec.describe Order, type: :model do
       expect(@user_judge.errors.full_messages).to include("Postal number is invalid. Include hyphen(-)")
     end
     it "配送先の情報として、都道府県が必須であること" do
-      @user_judge.prefecture_id = 0
+      @user_judge.prefecture_id = 1
       @user_judge.valid?
+      binding.pry
       expect(@user_judge.errors.full_messages).to include("Prefecture can't be blank")
     end
     it "配送先の情報として、市区町村が必須であること" do
