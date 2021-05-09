@@ -1,5 +1,19 @@
 # README
 
+## URL https://furima-34998.herokuapp.com/
+
+### Basic認証のIDとパスワード
+id: admin
+password: 2222
+
+### 出品者用のメールアドレスとパスワード
+アドレス　sample@sample
+パスワード　3plesample
+
+### 購入者用のメールアドレスとパスワード
+アドレス　sample2@sample
+パスワード　3ple2sample
+
 ## users
 
 | Column             | Type   | Options                   |
